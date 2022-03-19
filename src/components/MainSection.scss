@@ -1,0 +1,21 @@
+%flex-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+section {
+	min-height: 20rem;
+	border: 2px solid black;
+	@extend %flex-center;
+	gap: 1rem;
+	flex-wrap: wrap;
+
+	.poke__container {
+		border: 1px solid goldenrod;
+		height: 8rem;
+		width: 8rem;
+		@extend %flex-center;
+	}
+}
