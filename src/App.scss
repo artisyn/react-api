@@ -2,13 +2,14 @@
 .App {
 	padding: 1rem;
 	.pokemon__container {
-		border: 1px solid gold;
+		border: 3px solid black;
 		min-height: 5rem;
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
 		padding: 1rem;
+		margin-bottom: 1rem;
 
 		.pokemon__card {
 			border: 1px solid black;
@@ -20,6 +21,15 @@
 			justify-content: center;
 			flex-direction: column;
 			cursor: pointer;
+			position: relative;
+			.favorite {
+				position: absolute;
+				top: 1%;
+				right: 1%;
+				&:hover {
+					transform: scale(1.3);
+				}
+			}
 			.pokemon__title {
 				pointer-events: none;
 				font-size: 1.4rem;
@@ -28,6 +38,96 @@
 			}
 			img {
 				pointer-events: none;
+			}
+		}
+	}
+
+	.pokemon__details {
+		padding: 1rem;
+		margin: 0 auto;
+		width: 40rem;
+		min-height: 20rem;
+		border: 3px solid darkgoldenrod;
+		margin-bottom: 1rem;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+
+		.pokemon__looks {
+			border: 2px solid grey;
+			font-weight: bold;
+			min-height: 10rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		.pokemon__info {
+			border: 2px solid red;
+			min-height: 10rem;
+			font-weight: bold;
+			padding: 1rem;
+			.pokemon__species {
+				margin-left: 1rem;
+				color: red;
+				font-size: 1.3rem;
+				font-weight: bold;
+			}
+			.pokemon__abilities {
+				display: flex;
+				flex-direction: column;
+				.pokemon__ability {
+					margin-left: 1rem;
+					margin-right: 1rem;
+					color: red;
+					font-size: 1.3rem;
+					font-weight: bold;
+				}
+			}
+			table,
+			td,
+			th {
+				border: 1px solid black;
+			}
+		}
+	}
+
+	.favorite__title {
+		text-align: center;
+		font-size: 2rem;
+		font-weight: bold;
+		color: orange;
+	}
+
+	.favorite__pokemons {
+		padding: 1rem;
+		min-height: 10rem;
+		border: 3px solid orange;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		.favorited__pokemon {
+			overflow: hidden;
+			border-radius: 50%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: orangered;
+			font-weight: bold;
+			border: 2px solid red;
+			height: 8rem;
+			width: 8rem;
+			cursor: pointer;
+			h2 {
+				pointer-events: none;
+			}
+			img {
+				pointer-events: none;
+				max-width: 100%;
+				max-height: 4rem;
 			}
 		}
 	}
