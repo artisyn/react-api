@@ -43,7 +43,9 @@ function App() {
 				name: request.data.name,
 				picture: request.data.sprites.front_default,
 				species: request.data.species.name,
-				abilities: request.data.abilities,
+				abilities: request.data.abilities.sort(
+					(a, b) => b.slot - a.slot
+				),
 				stats: request.data.stats,
 			});
 		};
@@ -92,6 +94,18 @@ function App() {
 		setFavoritePokemons([...favoritePokemons, [name, image]]);
 	};
 
+	const favoriteFromDetails = (card) => {
+		const name = card.querySelector('h2').innerText.toLowerCase();
+		const image = card.querySelector('img').src;
+
+		if (favoritePokemons.find((el) => el[0] === name)) {
+			console.log('already favorited');
+			return;
+		}
+
+		setFavoritePokemons([...favoritePokemons, [name, image]]);
+	};
+
 	return (
 		<div className="App">
 			<header>
@@ -124,6 +138,16 @@ function App() {
 				) : (
 					<div className="pokemon__details">
 						<div className="pokemon__looks">
+							<span
+								onClick={(e) => {
+									favoriteFromDetails(
+										e.target.closest('.pokemon__looks')
+									);
+								}}
+								className="favorite__star"
+							>
+								⭐
+							</span>
 							<h2>{pokemonDetails.name.toUpperCase()}</h2>
 							<img src={pokemonDetails.picture} alt="pokemon" />
 						</div>
@@ -137,7 +161,7 @@ function App() {
 							</div>
 							<div className="pokemon__abilities">
 								{pokemonDetails.abilities.map((el, i) => (
-									<div>
+									<div key={i + Math.random()}>
 										Ability {i + 1}:{' '}
 										<span className="pokemon__ability">
 											{el.ability.name}
@@ -150,11 +174,11 @@ function App() {
 								<table>
 									<tbody>
 										<tr>
-											<th>Stat name</th>{' '}
+											<th>Stat name</th>
 											<th>Stat value</th>
 										</tr>
 										{pokemonDetails.stats.map((el) => (
-											<tr>
+											<tr key={el.stat.name + 10}>
 												<td>{el.stat.name}</td>
 												<td>{el.base_stat}</td>
 											</tr>
